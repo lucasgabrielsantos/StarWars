@@ -38,7 +38,7 @@ class StarWarsAPI {
     fun loadMovies(): Observable<Movie>? {
         return service.listMovies()
             .flatMap { filmResults -> Observable.from(filmResults.results) }
-            .map { film -> Movie(film.title, film.episodeId, ArrayList<Character>()) }
+            .map { film -> Movie(film.title, film.episodeId, ArrayList()) }
     }
 
     fun loadMoviewFull(): Observable<Movie>? {
@@ -46,7 +46,7 @@ class StarWarsAPI {
             .flatMap { filmResults -> Observable.from(filmResults.results) }
             .flatMap { film ->
                 Observable.zip(
-                    Observable.just(Movie(film.title, film.episodeId, ArrayList<Character>())),
+                    Observable.just(Movie(film.title, film.episodeId, ArrayList())),
                     Observable.from(film.personUrls)
 
                         .flatMap { personUrl ->

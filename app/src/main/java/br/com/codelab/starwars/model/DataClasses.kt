@@ -8,7 +8,7 @@ data class Character(val name : String,
                      val gender : String){
 
     override fun toString(): String {
-        return "${name} / ${gender}"
+        return "$name / $gender"
     }
 }
 
